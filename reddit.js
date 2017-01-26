@@ -94,8 +94,9 @@ module.exports = function RedditAPIConfigurator(conn) {
       var limit = options.numPerPage || 25; // if options.numPerPage is "falsy" then use 25
       var offset = (options.page || 0) * limit;
       
-      conn.query(`
-        SELECT 
+      conn.query(
+      //IMPROVE THE GETALL POSTS FUNCTION
+        `SELECT 
         posts.id as postId, posts.title, posts.url, posts.createdAt as postCreatedAt, posts.updatedAt as postUpdatedAt, 
         users.id as userId, users.username as userName, users.createdAt as usersCreatedAt, users.updatedAt as usersUpdatedAt 
         FROM posts 
@@ -104,8 +105,7 @@ module.exports = function RedditAPIConfigurator(conn) {
         ORDER BY posts.createdAt DESC
         LIMIT ? OFFSET ?`
         
-        
-        
+      // ORIGINAL GET ALL POSTS FUNCTION
         // SELECT id, title, url, userId, createdAt, updatedAt
         // FROM posts
         // ORDER BY createdAt DESC
@@ -120,6 +120,8 @@ module.exports = function RedditAPIConfigurator(conn) {
           }
         }
       );
-    }//end of getAllPosts
+    },//end of getAllPosts
+    
+    
   };
 };

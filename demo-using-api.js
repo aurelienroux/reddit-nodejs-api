@@ -41,5 +41,28 @@ var redditLiveConnectedAPI = redditApiConfig(connection);
 
 
 redditLiveConnectedAPI.getAllPosts({}, function(err, result){
-  console.log(result);
+  if(err){
+    console.log(err);
+  }
+  else{
+    result = result.map(function(ele){
+      return {
+        id: ele.postId,
+        title : ele.title,
+        url: ele.url,
+        createdAt: ele.postCreatedAt,
+        updatedAt: ele.postUpdatedAt,
+        userId: ele.userId,
+        user: {
+          id: ele.userId,
+          username: ele.userName,
+          createdAt: ele.usersCreatedAt,
+          updatedAt: ele.usersUpdatedAt
+        }
+      }
+    });
+    
+    console.log(result);
+    
+  }
 })
