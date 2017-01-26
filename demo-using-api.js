@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 var redditApiConfig = require('./reddit');
 var redditLiveConnectedAPI = redditApiConfig(connection);
 
-// It's request time!
+// ITS'S REQUEST TIME! CREATE A USER AND POST
 // redditLiveConnectedAPI.createUser({
 //   username: 'hello231',
 //   password: 'xxx'
@@ -22,7 +22,8 @@ var redditLiveConnectedAPI = redditApiConfig(connection);
 //     console.log(err);
 //   }
 //   else {
-    
+
+    // //CREATE POST
     // redditLiveConnectedAPI.createPost({
     //   title: 'hi again again reddit!',
     //   url: 'https://www.reddit.com',
@@ -39,7 +40,7 @@ var redditLiveConnectedAPI = redditApiConfig(connection);
   // }
 // });
 
-
+// IMPROVE GET ALL POSTS FUNCTION
 redditLiveConnectedAPI.getAllPosts({}, function(err, result){
   if(err){
     console.log(err);
@@ -61,8 +62,6 @@ redditLiveConnectedAPI.getAllPosts({}, function(err, result){
         }
       }
     });
-    
     console.log(result);
-    
   }
 })
