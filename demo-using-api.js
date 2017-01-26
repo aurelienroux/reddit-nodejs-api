@@ -4,17 +4,17 @@ var mysql = require('mysql');
 // create a connection to our Cloud9 server
 var connection = mysql.createConnection({
   host     : 'localhost',
-  user     : 'ziad_saab', // CHANGE THIS :)
+  user     : 'aureroux', // CHANGE THIS :)
   password : '',
   database: 'reddit'
 });
 
 // load our API and pass it the connection
-var reddit = require('./reddit');
-var redditAPI = reddit(connection);
+var redditApiConfig = require('./reddit');
+var redditLiveConnectedAPI = redditApiConfig(connection);
 
 // It's request time!
-redditAPI.createUser({
+redditLiveConnectedAPI.createUser({
   username: 'hello23',
   password: 'xxx'
 }, function(err, user) {
@@ -22,7 +22,7 @@ redditAPI.createUser({
     console.log(err);
   }
   else {
-    redditAPI.createPost({
+    redditLiveConnectedAPI.createPost({
       title: 'hi reddit!',
       url: 'https://www.reddit.com',
       userId: user.id

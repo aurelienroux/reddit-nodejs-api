@@ -1,7 +1,7 @@
 var bcrypt = require('bcrypt');
 var HASH_ROUNDS = 10;
 
-module.exports = function RedditAPI(conn) {
+module.exports = function RedditAPIConfigurator(conn) {
   return {
     createUser: function(user, callback) {
       
