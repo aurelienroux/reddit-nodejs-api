@@ -14,25 +14,32 @@ var redditApiConfig = require('./reddit');
 var redditLiveConnectedAPI = redditApiConfig(connection);
 
 // It's request time!
-redditLiveConnectedAPI.createUser({
-  username: 'hello23',
-  password: 'xxx'
-}, function(err, user) {
-  if (err) {
-    console.log(err);
-  }
-  else {
-    redditLiveConnectedAPI.createPost({
-      title: 'hi reddit!',
-      url: 'https://www.reddit.com',
-      userId: user.id
-    }, function(err, post) {
-      if (err) {
-        console.log(err);
-      }
-      else {
-        console.log(post);
-      }
-    });
-  }
-});
+// redditLiveConnectedAPI.createUser({
+//   username: 'hello231',
+//   password: 'xxx'
+// }, function(err, user) {
+//   if (err) {
+//     console.log(err);
+//   }
+//   else {
+    
+    // redditLiveConnectedAPI.createPost({
+    //   title: 'hi again again reddit!',
+    //   url: 'https://www.reddit.com',
+    //   userId: 1
+    // }, function(err, post) {
+    //   if (err) {
+    //     console.log(err);
+    //   }
+    //   else {
+    //     console.log(post);
+    //   }
+    // });
+    
+  // }
+// });
+
+
+redditLiveConnectedAPI.getAllPosts({}, function(err, result){
+  console.log(result);
+})
