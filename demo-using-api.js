@@ -40,8 +40,34 @@ var redditLiveConnectedAPI = redditApiConfig(connection);
   // }
 // });
 
-// IMPROVE GET ALL POSTS FUNCTION
-redditLiveConnectedAPI.getAllPosts({}, function(err, result){
+// // IMPROVE GET ALL POSTS FUNCTION
+// redditLiveConnectedAPI.getAllPosts({}, function(err, result){
+//   if(err){
+//     console.log(err);
+//   }
+//   else{
+//     result = result.map(function(ele){
+//       return {
+//         id: ele.postId,
+//         title : ele.title,
+//         url: ele.url,
+//         createdAt: ele.postCreatedAt,
+//         updatedAt: ele.postUpdatedAt,
+//         userId: ele.userId,
+//         user: {
+//           id: ele.userId,
+//           username: ele.userName,
+//           createdAt: ele.usersCreatedAt,
+//           updatedAt: ele.usersUpdatedAt
+//         }
+//       }
+//     });
+//     console.log(result);
+//   }
+// })
+
+//GET POSTS FROM ONE USER
+redditLiveConnectedAPI.getAllPostsForUser( 1, {}, function(err, result){
   if(err){
     console.log(err);
   }
@@ -60,7 +86,7 @@ redditLiveConnectedAPI.getAllPosts({}, function(err, result){
           createdAt: ele.usersCreatedAt,
           updatedAt: ele.usersUpdatedAt
         }
-      }
+      };
     });
     console.log(result);
   }

@@ -57,7 +57,7 @@ module.exports = function RedditAPIConfigurator(conn) {
           );
         }
       });
-    },
+    },// end of create user
     createPost: function(post, callback) {
       conn.query(
         'INSERT INTO posts (userId, title, url, createdAt) VALUES (?, ?, ?, ?)', [post.userId, post.title, post.url, new Date()],
@@ -84,7 +84,7 @@ module.exports = function RedditAPIConfigurator(conn) {
           }
         }
       );
-    },
+    },// end of create post
     getAllPosts: function(options, callback) {
       // In case we are called without an options parameter, shift all the parameters manually
       if (!callback) {
@@ -120,8 +120,36 @@ module.exports = function RedditAPIConfigurator(conn) {
           }
         }
       );
-    },//end of getAllPosts
+    },// end of getAllPosts
+    getAllPostsForUser: function(userId, options, callback){
+      // In case we are called without an options parameter, shift all the parameters manually
+      if (!callback) {
+        callback = options;
+        options = {};
+      }
+      var limit = options.numPerPage || 25; // if options.numPerPage is "falsy" then use 25
+      var offset = (options.page || 0) * limit;
     
+      conn.query(
+        `SELECT posts.id as postId, posts.title as title, posts.url as url, posts.createdAt as postCreatedAt, posts.updatedAt as postUpdatedAt, 
+        users.id as userId, users.username as userName, users.createdAt as usersCreatedAt, users.updatedAt as usersUpdatedAt
+        FROM posts 
+        LEFT JOIN users ON posts.userId = users.id 
+        WHERE users.id = ?
+        ORDER BY posts.createdAt DESC
+        LIMIT ? OFFSET ?`
+        , [userId, limit, offset],
+        function(err, results) {
+          if (err) {
+            callback(err);
+          }
+          else {
+            callback(null, results);
+          }
+        }
+      );
+      
+    }//end of get all posts by user
     
   };
 };
