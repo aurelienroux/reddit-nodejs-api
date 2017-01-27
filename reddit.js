@@ -148,8 +148,24 @@ module.exports = function RedditAPIConfigurator(conn) {
           }
         }
       );
-      
-    }//end of get all posts by user
-    
+    },//end of get all posts by user
+    getSinglePost: function(postId, callback){
+      conn.query(
+        `SELECT posts.id as postId, posts.title as title, posts.url as url, posts.createdAt as createdAt, posts.updatedAt as updatedAt, 
+        users.id as userId, users.username as userName, users.createdAt as usersCreatedAt, users.updatedAt as usersUpdatedAt 
+        FROM posts 
+        LEFT JOIN users ON posts.userId = users.id 
+        WHERE posts.id = ?`
+        , [postId],
+        function(err, results) {
+          if (err) {
+            callback(err);
+          }
+          else {
+            callback(null, results);
+          }
+        }
+      );
+    }//end of get single post
   };
 };
