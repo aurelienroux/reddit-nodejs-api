@@ -35,3 +35,9 @@ CREATE TABLE `subreddits`(
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 );
+
+--This alter the posts table and link
+--to the subreddit table
+ALTER TABLE `posts`
+ADD COLUMN `subredditId` INT(11) NOT NULL,
+FOREIGN KEY (`subredditId`) REFERENCES `subreddits` (`id`);
