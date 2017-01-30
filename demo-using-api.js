@@ -23,19 +23,19 @@ var redditLiveConnectedAPI = redditApiConfig(connection);
 //   }
 //   else {
 
-    // //CREATE POST
-    // redditLiveConnectedAPI.createPost({
-    //   title: 'hi again again reddit!',
-    //   url: 'https://www.reddit.com',
-    //   userId: 1
-    // }, function(err, post) {
-    //   if (err) {
-    //     console.log(err);
-    //   }
-    //   else {
-    //     console.log(post);
-    //   }
-    // });
+    //CREATE POST
+    redditLiveConnectedAPI.createPost({
+      title: 'ipad air',
+      url: 'https://www.ipadair.com',
+      userId: 1
+    }, function(err, post) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+        console.log(post);
+      }
+    });
     
   // }
 // });
